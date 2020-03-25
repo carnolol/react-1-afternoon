@@ -28,8 +28,17 @@ class FilterObject extends Component{
     handleChange(val){
         this.setState({userInput: val})
     }
-    filterPokemon(prop){
-        
+    filterPokemon(value){
+        let pokemon = this.state.pokemon
+        let filteredPokemon = []
+        for(let key in pokemon){
+            // console.log(key)
+            if(pokemon.hasOwnProperty(value)){
+                filteredPokemon.push(pokemon[key])
+                console.log(pokemon[key])
+            }
+        }
+        this.setState({filteredPokemon: filteredPokemon})
     }
     render(){
         return(
@@ -37,7 +46,7 @@ class FilterObject extends Component{
                 <h4>Filter Object</h4>
         <span className="puzzleText"> Original: {JSON.stringify(this.state.pokemon,null ,10)}</span>
                 <input className="inputLine" onChange={(e) => this.handleChange(e.target.value)}/>
-                <button className="confirmationButton" onClock={() => this.filterPokemon(this.state.userInput)}>Filter</button>
+                <button className="confirmationButton" onClick={() => this.filterPokemon(this.state.userInput)}>Filter</button>
         <span className="resultsBox filterObjectRB"> Filtered: {JSON.stringify(this.state.filteredPokemon, null, 10)}</span>
             </div>
         )
