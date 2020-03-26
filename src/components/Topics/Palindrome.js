@@ -11,23 +11,25 @@ class Palindrome extends Component {
     handleChange(val){
         this.setState({userInput: val})
     }
-    filterArray(userInput){
-        let unFilteredArray = this.state.unFilteredArray
-        let filteredArray = []
-        for( let i = 0; i < unFilteredArray.length; i ++){
-            if(unFilteredArray[i].includes(userInput)){
-            filteredArray.push(unFilteredArray[i])
-            }
+    isPalindrome(userInput){
+        let forwards = userInput
+        let backwards = userInput
+        backwards = backwards.split('')
+        backwards = backwards.reverse()
+        backwards = backwards.join('')
+        if(forwards === backwards){
+            this.setState({palindrom: 'true'})
+        } else {
+            this.setState({palindrom: 'false'})
         }
-        this.setState({ filteredArray: filteredArray})
     }
     render(){
         return (
-            <div className="puzzleBox palindromePB">
+        <div className="puzzleBox palindromePB">
             <h4>Palindrome</h4>
             <input className="inputLine" onChange={(e) => this.handleChange(e.target.value)}/>
-            <button className="confirmationButton" onClick={() => this.filterArray(this.state.userInput)}>Filter</button>
-        <span className="resultsBox"> Palindrome: {this.state.palindrome} </span>
+            <button className="confirmationButton" onClick={() => this.isPalindrome(this.state.userInput)}>Check</button>
+            <span className="resultsBox"> Palindrome: {this.state.palindrome} </span>
         </div>
         )
     }
