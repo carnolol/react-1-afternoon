@@ -10,11 +10,11 @@ class Sum extends Component {
         }
     }
     handleChange1(val){
-        this.setState({num1: val})
+        this.setState({num1: +val})
         console.log(val)
     }
     handleChange2(val){
-        this.setState({num2: val})
+        this.setState({num2: +val})
         console.log(val)
     }
     sumTheNumbers(){
